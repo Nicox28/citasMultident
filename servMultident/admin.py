@@ -29,7 +29,7 @@ class personalAdmin(admin.ModelAdmin):
     search_fields = ('nomb_per',)
 
 class usuarioAdmin(admin.ModelAdmin):
-    list_display = ('login','clave','personal','nomb','apellido','perfil')
+    list_display = ('login','clave','nomb','apellido','perfil')
     search_fields = ('login',)
 
 class tratamientoAdmin(admin.ModelAdmin):

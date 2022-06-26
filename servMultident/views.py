@@ -5,7 +5,7 @@ from rest_framework import permissions, viewsets, filters
 # Create your views here.
 
 class pacienteViewSet(viewsets.ModelViewSet):
-    queryset = paciente.objects.all()
+    queryset = paciente.objects.all().order_by('-id')
     serializer_class = pacienteSerializer
     permission_classes = [permissions.IsAuthenticated]    
     filter_backends = [filters.SearchFilter]

@@ -50,8 +50,8 @@ class personal(models.Model):
     apellido_per = models.CharField(max_length=20)
     cel_per = models.IntegerField()
     docu_per = models.IntegerField()
-    especialidad = models.ForeignKey(especialidad, on_delete=models.CASCADE)
-    cat_per = models.ForeignKey(cat_per, on_delete=models.CASCADE)
+    especialidad = models.CharField(max_length=30)
+    cat_per = models.CharField(max_length=30)
     sexo_per = models.CharField(max_length=15)  
     
     def __str__(self):
@@ -60,7 +60,6 @@ class personal(models.Model):
 class usuario(models.Model):
     login = models.CharField(max_length=20)
     clave = models.CharField(max_length=20)
-    personal = models.ForeignKey(personal, on_delete=models.CASCADE)
     nomb = models.CharField(max_length=25)
     apellido = models.CharField(max_length=20)
     perfil = models.CharField(max_length=10)

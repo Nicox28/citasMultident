@@ -29,7 +29,6 @@ class cat_perSerializer(serializers.HyperlinkedModelSerializer):
         fields = '__all__'
 
 class personalSerializer(serializers.HyperlinkedModelSerializer):
-    datosEspecialidad = especialidadSerializer(source = "especialidad", read_only=True)
     class Meta:
         model = personal
         fields = '__all__'
