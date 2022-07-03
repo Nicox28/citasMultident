@@ -78,11 +78,11 @@ class tratamiento(models.Model):
 class cita(models.Model):
     hora = models.TimeField()
     fecha = models.DateField()
-    paciente = models.ForeignKey(paciente, on_delete=models.CASCADE)
-    personal = models.ForeignKey(personal, on_delete=models.CASCADE)
-    consultorio = models.ForeignKey(consultorio, on_delete=models.CASCADE)
-    #def __srt__(self):
-     #   return self.fecha
+    nombre_c = models.CharField(max_length=20)
+    apellido_c = models.CharField(max_length=20)
+    correo = models.CharField(max_length=20)
+    def __srt__(self):
+        return self.fecha
 
 class det_hist(models.Model):
     fecha_his = models.DateField

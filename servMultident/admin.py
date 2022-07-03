@@ -37,7 +37,7 @@ class tratamientoAdmin(admin.ModelAdmin):
     search_fields = ('nomb_trata',)
 
 class citaAdmin(admin.ModelAdmin):
-    list_display = ('hora','fecha','paciente','personal','consultorio')
+    list_display = ('hora','fecha','nombre_c','apellido_c','correo')
     search_fields = ('fecha',)
 
 class det_histAdmin(admin.ModelAdmin):
