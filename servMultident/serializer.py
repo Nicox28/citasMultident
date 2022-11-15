@@ -1,5 +1,5 @@
 from django.contrib.auth.models import User, Group
-from servMultident.models import paciente,clinica,consultorio, especialidad,cat_per,personal,usuario,tratamiento,cita,det_hist,historial
+from servMultident.models import paciente,clinica,consultorio, especialidad,cat_per,personal,usuario,tratamiento,cita,rec_tratamiento,historial,enfermedad,examen_oral
 from rest_framework import serializers
 
 
@@ -48,13 +48,36 @@ class citaSerializer(serializers.HyperlinkedModelSerializer):
         model = cita
         fields = '__all__'
 
-class det_histSerializer(serializers.HyperlinkedModelSerializer):
+class rec_tratamientoSerializer(serializers.HyperlinkedModelSerializer):
+    datosPersonal = personalSerializer(source = "personal", read_only=True)
+    datosTratamiento = tratamientoSerializer(source = "tratamiento", read_only=True)
+    datosPaciente = tratamientoSerializer(source = "paciente", read_only=True)
     class Meta:
-        model = det_hist
+        model = rec_tratamiento
         fields = '__all__'
 
+class enfermedadSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = enfermedad
+        fields = '__all__'
+
+
+
+class examen_oralSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = examen_oral
+        fields = '__all__'
+
+
+
 class historialSerializer(serializers.HyperlinkedModelSerializer):
+    datosPaciente = pacienteSerializer(source = "paciente", read_only=True)
+    datosRec_tratamiento = rec_tratamientoSerializer(source = "rec_tratamiento", read_only=True)
+    datosEnfermedades = enfermedadSerializer(source = "enfermedad", read_only=True)
+    datosExamen_oral = examen_oralSerializer(source = "examen_oral", read_only=True)
     class Meta:
         model = historial
         fields = '__all__'
+
+
 

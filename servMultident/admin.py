@@ -1,5 +1,5 @@
 from django.contrib import admin
-from servMultident.models import paciente,clinica,consultorio, especialidad,cat_per,personal,usuario,tratamiento,cita,det_hist,historial
+from servMultident.models import paciente,clinica,consultorio, especialidad,cat_per,personal,usuario,tratamiento,cita,rec_tratamiento,historial,enfermedad,examen_oral
 
 
 # Register your models here.
@@ -40,12 +40,20 @@ class citaAdmin(admin.ModelAdmin):
     list_display = ('hora','fecha','nombre_c','apellido_c','correo')
     search_fields = ('fecha',)
 
-class det_histAdmin(admin.ModelAdmin):
-    list_display = ('fecha_his','tratamiento')
-    search_fields = ('fecha_his',)
+class rec_tratamientoAdmin(admin.ModelAdmin):
+    list_display = ('fecha_tratami','tratamiento','personal','estado','paciente')
+    search_fields = ('estado',)
+
+class enfermedadAdmin(admin.ModelAdmin):
+    list_display = ('num_enfer','nomb_enfer')
+    search_fields = ('nomb_enfer',)
+
+class examen_oralAdmin(admin.ModelAdmin):
+    list_display = ('impresionGe','cabeza','cuello','mejillas','lengua','piso_boca','pilares_pala','encias')
+    search_fields = ('impresionGe',)
 
 class historialAdmin(admin.ModelAdmin):
-    list_display = ('paciente','det_hist')
+    list_display = ('paciente','rec_tratamiento','examen_oral','enfermedad','fecha_histo','contactar','cel_contac','alergia','toma_medica','frecuencia_visi','experiencia_trauma','extraccion_mue','sangre_enci','estetica_dental','motivo_consul','presion_art','talla','peso')
     search_fields = ('paciente',)
 
 admin.site.register(paciente, pacienteAdmin)
@@ -57,5 +65,7 @@ admin.site.register(personal, personalAdmin)
 admin.site.register(usuario, usuarioAdmin) 
 admin.site.register(tratamiento, tratamientoAdmin)
 admin.site.register(cita, citaAdmin)  
-admin.site.register(det_hist, det_histAdmin) 
+admin.site.register(rec_tratamiento, rec_tratamientoAdmin)
+admin.site.register(enfermedad, enfermedadAdmin)
+admin.site.register(examen_oral, examen_oralAdmin)
 admin.site.register(historial, historialAdmin) 

@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from servMultident.models import paciente,clinica,consultorio, especialidad,cat_per,personal,usuario,tratamiento,cita,det_hist,historial
-from servMultident.serializer import pacienteSerializer,clinicaSerializer,consultorioSerializer,especialidadSerializer,cat_perSerializer,personalSerializer,usuarioSerializer,tratamientoSerializer,citaSerializer,det_histSerializer,historialSerializer
+from servMultident.models import paciente,clinica,consultorio, especialidad,cat_per,personal,usuario,tratamiento,cita,rec_tratamiento,historial,enfermedad,examen_oral
+from servMultident.serializer import pacienteSerializer,clinicaSerializer,consultorioSerializer,especialidadSerializer,cat_perSerializer,personalSerializer,usuarioSerializer,tratamientoSerializer,citaSerializer,rec_tratamientoSerializer,historialSerializer,enfermedadSerializer,examen_oralSerializer
 from rest_framework import permissions, viewsets, filters
 # Create your views here.
 
@@ -67,9 +67,25 @@ class citaViewSet(viewsets.ModelViewSet):
     filter_backends = [filters.SearchFilter]
     search_fields = ['=id']
 
-class det_histViewSet(viewsets.ModelViewSet):
-    queryset = det_hist.objects.all()
-    serializer_class = det_histSerializer
+class rec_tratamientoViewSet(viewsets.ModelViewSet):
+    queryset = rec_tratamiento.objects.all()
+    serializer_class = rec_tratamientoSerializer
+    permission_classes = [permissions.IsAuthenticated]    
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['=id']
+
+
+class enfermedadViewSet(viewsets.ModelViewSet):
+    queryset = enfermedad.objects.all()
+    serializer_class = enfermedadSerializer
+    permission_classes = [permissions.IsAuthenticated]    
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['=id']
+
+
+class examen_oralViewSet(viewsets.ModelViewSet):
+    queryset = examen_oral.objects.all()
+    serializer_class = examen_oralSerializer
     permission_classes = [permissions.IsAuthenticated]    
     filter_backends = [filters.SearchFilter]
     search_fields = ['=id']

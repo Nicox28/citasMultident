@@ -33,8 +33,11 @@ router.register(r'personal', viewsCitas.personalViewSet)
 router.register(r'usuario', viewsCitas.usuarioViewSet)
 router.register(r'Tratamiento', viewsCitas.tratamientoViewSet)
 router.register(r'cita', viewsCitas.citaViewSet)
-router.register(r'det_hist', viewsCitas.clinicaViewSet)
-router.register(r'historial', viewsCitas.clinicaViewSet)
+router.register(r'rec_tratamiento', viewsCitas.rec_tratamientoViewSet)
+router.register(r'enfermedad', viewsCitas.enfermedadViewSet)
+router.register(r'examen_oral', viewsCitas.examen_oralViewSet)
+router.register(r'historial', viewsCitas.historialViewSet)
+
 #agregar todos
 
 urlpatterns = [

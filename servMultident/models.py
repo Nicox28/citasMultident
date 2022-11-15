@@ -7,10 +7,10 @@ class paciente(models.Model):
     nomb_pac = models.CharField(max_length=20)
     apellido_pac = models.CharField(max_length=20)
     direcc_pac = models.CharField(max_length=50)
-    cel_pac = models.IntegerField()
-    docu_pac = models.IntegerField()
+    cel_pac = models.CharField(max_length=9)
+    docu_pac = models.CharField(max_length=13)
     fecha_nac_pac = models.DateField()
-    sexo_pac = models.CharField(max_length=15)
+    sexo_pac = models.CharField(max_length=10)
 
     def __srt__(self):
         return self.nomb_pac
@@ -48,8 +48,8 @@ class cat_per(models.Model):
 class personal(models.Model):
     nomb_per = models.CharField(max_length=20)
     apellido_per = models.CharField(max_length=20)
-    cel_per = models.IntegerField()
-    docu_per = models.IntegerField()
+    cel_per = models.CharField(max_length=9)
+    docu_per = models.CharField(max_length=13)
     especialidad = models.CharField(max_length=30)
     cat_per = models.CharField(max_length=30)
     sexo_per = models.CharField(max_length=15)  
@@ -81,23 +81,62 @@ class cita(models.Model):
     nombre_c = models.CharField(max_length=20)
     apellido_c = models.CharField(max_length=20)
     correo = models.CharField(max_length=20)
+    
     def __srt__(self):
-        return self.fecha
+        return self.nombre_c
 
-class det_hist(models.Model):
-    fecha_his = models.DateField
+class rec_tratamiento(models.Model):
+    fecha_tratami = models.DateField()
     tratamiento = models.ForeignKey(tratamiento, on_delete=models.CASCADE)
+    personal = models.ForeignKey(personal, on_delete=models.CASCADE)
+    estado = models.CharField(max_length=5)
+    paciente = models.ForeignKey(paciente, on_delete=models.CASCADE)
 
-    #def __srt__(self):
-     #   return self.fecha_his
+    def __srt__(self):
+        return self.estado
+
+class enfermedad(models.Model):
+    num_enfer = models.IntegerField()
+    nomb_enfer = models.CharField(max_length=20)
+    
+    def __srt__(self):
+        return self.nomb_enfer
+
+class examen_oral(models.Model):
+    impresionGe = models.CharField(max_length=40)
+    cabeza = models.CharField(max_length=40)
+    cuello = models.CharField(max_length=40)
+    mejillas = models.CharField(max_length=40)
+    lengua = models.CharField(max_length=20)
+    piso_boca = models.CharField(max_length=20)
+    pilares_pala = models.CharField(max_length=40)
+    encias = models.CharField(max_length=40)
+    
+    def __srt__(self):
+        return self.impresionGe
 
 class historial(models.Model):
     paciente = models.ForeignKey(paciente, on_delete=models.CASCADE)
-    det_hist = models.ForeignKey(det_hist, on_delete=models.CASCADE)
+    rec_tratamiento = models.ForeignKey(rec_tratamiento, on_delete=models.CASCADE)
+    examen_oral = models.ForeignKey(examen_oral, on_delete=models.CASCADE)
+    enfermedad = models.ForeignKey(enfermedad, on_delete=models.CASCADE)
+    fecha_histo = models.DateField()
+    contactar = models.CharField(max_length=40)
+    cel_contac = models.CharField(max_length=40)
+    alergia = models.CharField(max_length=40)
+    toma_medica = models.CharField(max_length=40)
+    frecuencia_visi = models.CharField(max_length=40)
+    experiencia_trauma = models.CharField(max_length=40)
+    extraccion_mue = models.CharField(max_length=40)
+    sangre_enci = models.CharField(max_length=40)
+    estetica_dental = models.CharField(max_length=40)
+    motivo_consul = models.CharField(max_length=40)
+    presion_art = models.CharField(max_length=20)
+    talla = models.CharField(max_length=20)
+    peso = models.CharField(max_length=20)
 
-    #def __srt__(self):
-     #   return self.det_hist
 
-
+    def __srt__(self):
+        return self.contactar
 
 

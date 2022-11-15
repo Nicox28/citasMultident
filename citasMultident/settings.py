@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-yopiin-#l8vdjxctt(ak4ma4i2thy194jv7#kv^%1t(42##iip
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.1.10']
+ALLOWED_HOSTS = ['192.168.1.11']
 
 
 # Application definition
@@ -80,7 +80,7 @@ WSGI_APPLICATION = 'citasMultident.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'dbCitasM',
+        'NAME': 'bdCitasM3',
         'USER': 'postgres',
         'PASSWORD': 'admin',
         'HOST': '127.0.0.1',
